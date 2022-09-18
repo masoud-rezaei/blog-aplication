@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
     #apps
     'blog',
     #packages
@@ -129,3 +131,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # EMAIL 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+#
+SITE_ID = 1
