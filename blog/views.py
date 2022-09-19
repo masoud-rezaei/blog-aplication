@@ -6,7 +6,8 @@ from django.core.paginator import Paginator, EmptyPage,\
 from .models import Post, Comment
 from django.core.mail import send_mail
 from taggit.models import Tag 
-from django.db.models import Count
+from django.db.models import Count ,Q
+
 
 # Create your views here. 
 def post_list(request, tag_slug=None):
@@ -94,3 +95,12 @@ def post_share(request, post_id):
     else:
         form = EmailPostForm()
     return render(request, 'blog/post/share.html', {'post': post, 'form': form, 'send':send})           
+
+class SearchResultView(ListView):
+    model = Post
+    context_object_name = 'posts'
+    template_name = 'blog/post/search.html' 
+    
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        return Post.published.filter(Q(title__icontains=query) | Q(body__icontains=query))

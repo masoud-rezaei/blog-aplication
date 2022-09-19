@@ -1,0 +1,14 @@
+{% extends 'blog/base.html' %}
+{% block titele %}Search{% endblock titele %}
+
+
+{% block content %}
+  <h1>Search results</h1>
+  {% for post in posts %}
+    <div>
+      <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
+      <p>Author: {{ post.author }}</p>
+      <p>publish: {{ post.publish }}</p>
+    </div>
+  {% endfor %}
+{% endblock content %}
